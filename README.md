@@ -1,4 +1,23 @@
-# Bank Statement ETL Project
+# Bank Statement ETL
+
+**From uploaded statements to structured transaction data.**
+
+A Python and Flask development project with separate extraction, transformation, and SQL Server loading stages.
+
+[Project portfolio](https://github.com/sumanth2525/MainAll) · [Application](app.py) · [Transformations](etl/transform.py) · [Tests](tests)
+
+## Engineering overview
+
+1. The Flask upload route validates the file extension and saves the upload.
+2. Extraction produces a DataFrame for the transformation stage.
+3. Transformations parse dates, normalize amounts, derive merchant labels, and remove duplicate rows within the processed batch.
+4. The loader writes the transformed records and returns an inserted-row count.
+
+The transformation code filters invalid dates and amounts outside its configured range. Merchant labels use string heuristics. These choices should be reviewed against representative sample files.
+
+**Status:** local development / educational project. The Flask entry point enables debug mode and uses a placeholder session secret; deployment hardening is still required. Test commands below are provided for reproducibility; no passing test result is asserted here.
+
+## Project guide
 
 A complete ETL (Extract, Transform, Load) pipeline built with Python and Flask that processes bank statement files and loads transaction data into SQL Server.
 
